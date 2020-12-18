@@ -55,7 +55,7 @@ msg "Installing Docker..."
 sh <(curl -sSL https://get.docker.com) &>/dev/null
 
 # Install Portainer
-msg "Installing Portainer 2x (portainer-ce)..."
+msg "Installing Portainer-CE..."
 docker volume create portainer_data >/dev/null
 docker run -d \
   -p 8000:8000 \
