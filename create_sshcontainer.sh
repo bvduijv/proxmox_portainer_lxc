@@ -65,7 +65,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/Sthopeless/proxmox_portainer_lxc/raw/master/setup.sh
+wget -qL https://github.com/Sthopeless/proxmox_portainer_lxc/raw/master/ssh_setup.sh
 
 # Detect modules and automatically load at boot
 load_module aufs
@@ -164,8 +164,8 @@ pct unmount $CTID && unset MOUNT
 # Setup container
 msg "Starting LXC container..."
 pct start $CTID
-pct push $CTID setup.sh /setup.sh -perms 755
-pct exec $CTID /setup.sh
+pct push $CTID ssh_setup.sh /ssh_setup.sh -perms 755
+pct exec $CTID /ssh_setup.sh
 
 # Get network details and show completion message
 IP=$(pct exec $CTID ip a s dev eth0 | sed -n '/inet / s/\// /p' | awk '{print $2}')
