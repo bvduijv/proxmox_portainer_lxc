@@ -56,7 +56,8 @@ sh <(curl -sSL https://get.docker.com) &>/dev/null
 
 # Install Portainer
 msg "Installing Portainer..."
-mkdir -p /docker/{portainer,vscode}
+FOLDER_PORTAINER='/docker/portainer'
+mkdir -p $FOLDER_PORTAINER
 # docker volume create portainer_data >/dev/null
 docker run -d \
   -p 8000:8000 \
@@ -79,6 +80,8 @@ docker run -d \
 
 # Instal VSCode
 msg "Installing VSCode..."
+FOLDER_VSCODE='/docker/vscode'
+mkdir -p $FOLDER_VSCODE
 docker run -d \
   --name=vscode \
   -e TZ=Europe/Amsterdam \
