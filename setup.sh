@@ -85,7 +85,7 @@ docker run -d \
   -p 8443:8443 \
   --label com.centurylinklabs.watchtower.enable=true \
   -v /docker/vscode:/config \
-  -v /docker:/config/workspace/Server
+  -v /docker:/config/workspace/Server \
   --restart unless-stopped \
   ghcr.io/linuxserver/code-server &>/dev/null
 
