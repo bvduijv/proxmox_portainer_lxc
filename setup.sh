@@ -91,20 +91,6 @@ docker run -d \
   --restart unless-stopped \
   ghcr.io/linuxserver/code-server &>/dev/null
 
-# Install BitWarden
-msg "Installing BitWarden..."
-FOLDER_BITWARDEN='/docker/bitwarden'
-mkdir -p $(dirname $FOLDER_BITWARDEN)
-docker run -d \
-  --name bitwarden \
-  --label com.centurylinklabs.watchtower.enable=false \
-  -v /docker/bitwarden:/data/ \
-  -v /etc/timezone:/etc/timezone:ro \
-  -v /etc/localtime:/etc/localtime:ro \
-  -p 80:80 -p 3012:3012 \
-  -e ADMIN_TOKEN=RootPassword \
-  bitwardenrs/server:latest &>/dev/null
-
 # Customize container
 msg "Customizing container..."
 rm /etc/motd # Remove message of the day after login
