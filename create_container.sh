@@ -176,6 +176,4 @@ Portainer is reachable by going to the following URLs.
 
       http://${IP}:9000
       http://${HOSTNAME}.local:9000
-      
-Putxi :*
 "
