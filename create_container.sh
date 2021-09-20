@@ -140,8 +140,9 @@ fi
 ARCH=$(dpkg --print-architecture)
 HOSTNAME=portainer
 TEMPLATE_STRING="local:vztmpl/${TEMPLATE}"
+TEMPLATE_IP="192.168.1.2${CTID: -2}"
 pct create $CTID $TEMPLATE_STRING -arch $ARCH -features nesting=1 \
-  -hostname $HOSTNAME -net0 name=eth0,bridge=vmbr0,gw=192.168.1.1,ip=192.168.1.2${CTID: -2},hwaddr=aa:64:4f:db:e3:${CTID: -2} -onboot 1 \
+  -hostname $HOSTNAME -net0 name=eth0,bridge=vmbr0,gw=192.168.1.1,ip=$TEMPLATE_IP,hwaddr=aa:64:4f:db:e3:${CTID: -2} -onboot 1 \
   -ostype $OSTYPE -rootfs $ROOTFS,size=$DISK_SIZE -storage $STORAGE >/dev/null
 
 # Modify LXC permissions to support Docker
