@@ -27,8 +27,8 @@ function msg() {
 msg "Setting up container OS..."
 sed -i "/$LANG/ s/\(^# \)//" /etc/locale.gen
 locale-gen >/dev/null
-apt-get -y purge openssh-{client,server} >/dev/null
-apt-get autoremove >/dev/null
+#apt-get -y purge openssh-{client,server} >/dev/null
+#apt-get autoremove >/dev/null
 
 # Update container OS
 msg "Updating container OS..."
@@ -76,20 +76,6 @@ docker run -d \
   containrrr/watchtower \
   --cleanup \
   --label-enable &>/dev/null
-
-# Install VSCode
-msg "Installing VSCode..."
-FOLDER_VSCODE='/docker/vscode'
-mkdir -p $(dirname $FOLDER_VSCODE)
-docker run -d \
-  --name=vscode \
-  -e TZ=Europe/Amsterdam \
-  -p 8443:8443 \
-  --label com.centurylinklabs.watchtower.enable=true \
-  -v /docker/vscode:/config \
-  -v /docker:/config/workspace/Server \
-  --restart unless-stopped \
-  ghcr.io/linuxserver/code-server &>/dev/null
 
 # Customize container
 msg "Customizing container..."
